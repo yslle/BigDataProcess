@@ -1,4 +1,4 @@
-def readFile(filename):
+def genreCount(filename):
     filenames = filename.split()
     with open(filenames[0], "rt") as fp:
         datas = fp.read()
@@ -34,10 +34,7 @@ def readFile(filename):
         idx1 += 1
         idx2 += 1
     #print(cnt)
-    #i = 0
-    #for g in genre:
-        #print(g, cnt[i])
-        #i += 1
+    
     with open(filenames[1], "wt") as fp:
         i = 0
         for g in genre:
@@ -46,4 +43,4 @@ def readFile(filename):
 
 
 filename = input()
-readFile(filename)
+genreCount(filename)
