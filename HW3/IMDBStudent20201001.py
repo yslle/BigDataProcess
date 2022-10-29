@@ -1,6 +1,13 @@
-def genreCount(filename):
-    filenames = filename.split()
-    with open(filenames[0], "rt") as fp:
+import sys
+
+params = list(sys.argv)
+#print(params)
+inputFile = params[1]
+outputFile = params[2]
+#print(inputFile, outputFile)
+
+def genreCount(inputFile, outputFile):
+    with open(inputFile, "rt") as fp:
         datas = fp.read()
         data = datas.split("\n")
 
@@ -39,11 +46,10 @@ def genreCount(filename):
         cntIdx += 1
     #print(genre, cnt)
     
-    with open(filenames[1], "wt") as fp:
+    with open(outputFile, "wt") as fp:
         i = 0
         for g in genre:
             fp.write(g + " " +  str(cnt[i]) + "\n")
             i += 1
 
-filename = input()
-genreCount(filename)
+genreCount(inputFile, outputFile)
