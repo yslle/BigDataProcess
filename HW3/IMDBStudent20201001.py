@@ -20,27 +20,30 @@ def genreCount(filename):
     #print(gen)
 
     genre.clear()
-    genre = ["Animation", "Children's", "Comedy", "Adventure", "Fantasy", "Romance", "Drama", "Action", "Crime", "Thriller", "Horror", "Sci-Fi", "Documentary", "Short", "Family", "Mystery", "Talk-Show", "Musical"]
-    cnt = [0 for i in range(len(genre))]
-    #print(cnt)
-
-    idx1 = 0
-    idx2 = 0
-    while idx1 != len(genre):
+    cnt = [0 for i in range(18)]
+    
+    for g in gen:
+        for i in g:
+            if i not in genre:
+                genre.append(i)
+    #print(genre)
+    
+    genIdx = 0
+    cntIdx = 0
+    while cntIdx != len(genre):
         for g in gen:
             for i in g:
-                if i == genre[idx1]:
-                    cnt[idx2] += 1
-        idx1 += 1
-        idx2 += 1
-    #print(cnt)
+                if i == genre[genIdx]:
+                    cnt[cntIdx] += 1
+        genIdx += 1
+        cntIdx += 1
+    #print(genre, cnt)
     
     with open(filenames[1], "wt") as fp:
         i = 0
         for g in genre:
             fp.write(g + " " +  str(cnt[i]) + "\n")
             i += 1
-
 
 filename = input()
 genreCount(filename)
