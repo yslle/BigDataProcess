@@ -20,7 +20,7 @@ def genreCount(filename):
     #print(gen)
 
     genre.clear()
-    genre = ["Animation", "Children's", "Comedy", "Adventure", "Fantasy", "Romance", "Drama", "Action", "Crime", "Thriller", "Horror", "Sci-Fi", "Documentary"]
+    genre = ["Animation", "Children's", "Comedy", "Adventure", "Fantasy", "Romance", "Drama", "Action", "Crime", "Thriller", "Horror", "Sci-Fi", "Documentary", "Short", "Family", "Mystery", "Talk-Show", "Musical"]
     cnt = [0 for i in range(len(genre))]
     #print(cnt)
 
