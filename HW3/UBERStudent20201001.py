@@ -30,8 +30,8 @@ def uber(inputFile, outputFile):
     #print(region)
     
     dayOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-    vehicles = [['0' for i in range(len(dayOfWeek))] for i in range(len(region))]
-    trips = [['0' for i in range(len(dayOfWeek))] for i in range(len(region))]
+    vehicles = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
+    trips = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
     #print(vehicles)
     #print(trips)
     
@@ -44,15 +44,13 @@ def uber(inputFile, outputFile):
 
         dayNum = calendar.weekday(year, mon, day) 
         #print(dayNum, dayOfWeek[dayNum])
-        
-        i = 0
+        #print(vehicles)
+        idx = 0
         for r in region:
             if r == info[0]:
-                for day in dayOfWeek:
-                    if day == dayOfWeek[dayNum]:
-                        vehicles[i][dayNum] = info[2]
-                        trips[i][dayNum] = info[3]
-            i += 1
+                vehicles[idx][dayNum] += int(info[2])
+                trips[idx][dayNum] += int(info[3])
+            idx += 1
     #print(vehicles)
     #print(trips)
     
@@ -60,8 +58,8 @@ def uber(inputFile, outputFile):
         i = 0
         for r in region:
             j = 0
-            for v in vehicles:
-                fp.write(r + "," + dayOfWeek[i] + " " + vehicles[i][j] + "," +  trips[i][j] + "\n")
+            for d in dayOfWeek:
+                fp.write(region[i] + "," + d+ " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
                 j += 1
             i += 1
 
