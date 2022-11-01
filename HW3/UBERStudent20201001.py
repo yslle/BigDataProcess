@@ -54,13 +54,13 @@ with open(inputFile, "rt") as fp:
     #print(trips)
       
 with open(outputFile, "wt") as fp:
-    i = 0 
     j = 3
-    for r in region: 
-        for d in dayOfWeek:
+    for d in dayOfWeek: 
+        i = 0
+        for r in region:
             fp.write("{},{} {},{}\n".format(r, dayOfWeek[j], vehicles[i][j], trips[i][j]))
-            j += 1
-            if j == 7:
-                j = 0
-        i += 1
+            i += 1
+        j += 1
+        if j == 7:
+            j = 0
 
