@@ -50,16 +50,18 @@ def uber(inputFile, outputFile):
             if r == info[0]:
                 vehicles[idx][dayNum] += int(info[2])
                 trips[idx][dayNum] += int(info[3])
+            #print(r, vehicles[idx][dayNum], trips[idx][dayNum])
             idx += 1
     #print(vehicles)
     #print(trips)
-    
+      
     with open(outputFile, "wt") as fp:
         i = 0
         for r in region:
             j = 0
-            for d in dayOfWeek:
-                fp.write(region[i] + "," + d+ " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
+            #for d in dayOfWeek:
+            while j != 7:
+                fp.write(region[i] + "," + dayOfWeek[j] + " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
                 j += 1
             i += 1
 
