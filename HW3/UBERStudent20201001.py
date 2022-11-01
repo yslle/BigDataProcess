@@ -48,8 +48,8 @@ def uber(inputFile, outputFile):
         idx = 0
         for r in region:
             if r == info[0]:
-                vehicles[idx][dayNum] += int(info[2])
-                trips[idx][dayNum] += int(info[3])
+                vehicles[idx][dayNum] = int(info[2])
+                trips[idx][dayNum] = int(info[3])
             #print(r, vehicles[idx][dayNum], trips[idx][dayNum])
             idx += 1
     #print(vehicles)
