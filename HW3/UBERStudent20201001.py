@@ -2,10 +2,8 @@
 import sys
 import calendar
 
-params = list(sys.argv)
-inputFile = params[1]
-outputFile = params[2]
-#print(inputFile, outputFile)
+inputFile = sys.argv[1]
+outputFile = sys.argv[2]
 
 data = []
 with open(inputFile, "rt") as fp:
@@ -56,11 +54,13 @@ with open(inputFile, "rt") as fp:
     #print(trips)
       
 with open(outputFile, "wt") as fp:
-    i = 0
-    for r in region:
-        j = 0
+    i = 0 
+    j = 3
+    for r in region: 
         for d in dayOfWeek:
-            fp.write("{},{} {},{}\n".format(r, d, vehicles[i][j], str(trips[i][j])))
+            fp.write("{},{} {},{}\n".format(r, dayOfWeek[j], vehicles[i][j], trips[i][j]))
             j += 1
+            if j == 7:
+                j = 0
         i += 1
 
