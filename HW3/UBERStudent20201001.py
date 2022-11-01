@@ -8,7 +8,6 @@ outputFile = params[2]
 #print(inputFile, outputFile)
 
 data = []
-#def uber(inputFile, outputFile):
 with open(inputFile, "rt") as fp:
     datas = fp.read()
     data.append(datas.split("\n"))
@@ -61,8 +60,7 @@ with open(outputFile, "wt") as fp:
     for r in region:
         j = 0
         for d in dayOfWeek:
-            fp.write(r + "," + d + "\t" + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
+            fp.write("{},{} {},{}\n".format(r, d, vehicles[i][j], str(trips[i][j])))
             j += 1
         i += 1
 
-#uber(inputFile, outputFile)
