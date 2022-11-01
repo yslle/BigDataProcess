@@ -20,16 +20,19 @@ with open(inputFile, "rt") as fp:
             information.append(dInfo)
     #print(information)
 
-    region = []
+    dic = dict()
+    #region = []
     for info in information:
         #print(info[0])
-        if info[0] not in region:
-            region.append(info[0])
+        #if info[0] not in region:
+            #region.append(info[0])
+        if info[0] not in dic:
+            dic[info[0]] = {}
     #print(region)
     
     dayOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-    vehicles = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
-    trips = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
+    #vehicles = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
+    #trips = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
     #print(vehicles)
     #print(trips)
     
@@ -41,26 +44,21 @@ with open(inputFile, "rt") as fp:
         year = int(date[2])
 
         dayNum = calendar.weekday(year, mon, day) 
+        info[1] = dayOfWeek[dayNum]
+
+        if info[1] not in dic[info[0]]:
+            dic[info[0]][info[1]] = {}
+            dic[info[0]][info[1]]['vehicles'] = int(info[2])
+            dic[info[0]][info[1]]['trips'] = int(info[3])
+        else:   
+            dic[info[0]][info[1]]['vehicles'] += int(info[2])
+            dic[info[0]][info[1]]['trips'] += int(info[3])
         #print(mon, day, year, dayNum, dayOfWeek[dayNum])
         #print(vehicles)
         idx = 0
-        for r in region:
-            if r == info[0]:
-                vehicles[idx][dayNum] += int(info[2])
-                trips[idx][dayNum] += int(info[3])
-            #print(r, vehicles[idx][dayNum], trips[idx][dayNum])
-            idx += 1
-    #print(vehicles)
-    #print(trips)
-      
-with open(outputFile, "wt") as fp:
-    j = 3
-    for d in dayOfWeek: 
-        i = 0
-        for r in region:
-            fp.write("{},{} {},{}\n".format(r, dayOfWeek[j], vehicles[i][j], trips[i][j]))
-            i += 1
-        j += 1
-        if j == 7:
-            j = 0
+#print(dic)
 
+with open(outputFile, "wt") as fp:
+    for region in dic:
+        for weekDay in dic[region]:
+            fp.write("{},{} {},{}\n".format(region, weekDay, dic[region][weekDay]['vehicles'], dic[region][weekDay]['trips']))
