@@ -3,15 +3,14 @@ import sys
 import calendar
 
 params = list(sys.argv)
-#print(params)
 inputFile = params[1]
 outputFile = params[2]
 #print(inputFile, outputFile)
 
 data = []
-def uber(inputFile, outputFile):
-    with open(inputFile, "rt") as fp:
-        datas = fp.read()
+#def uber(inputFile, outputFile):
+with open(inputFile, "rt") as fp:
+    datas = fp.read()
     data.append(datas.split("\n"))
     #print(data)
     
@@ -57,13 +56,13 @@ def uber(inputFile, outputFile):
     #print(vehicles)
     #print(trips)
       
-    with open(outputFile, "wt") as fp:
-        i = 0
-        for r in region:
-            j = 0
-            for d in dayOfWeek:
-                fp.write(r + "," + d + " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
-                j += 1
-            i += 1
+with open(outputFile, "wt") as fp:
+    i = 0
+    for r in region:
+        j = 0
+        for d in dayOfWeek:
+            fp.write(r + "," + d + "\t" + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
+            j += 1
+        i += 1
 
-uber(inputFile, outputFile)
+#uber(inputFile, outputFile)
