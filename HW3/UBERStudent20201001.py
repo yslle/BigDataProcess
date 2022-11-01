@@ -62,7 +62,7 @@ def uber(inputFile, outputFile):
             j = 0
             #for d in dayOfWeek:
             while j != 7:
-                fp.write(region[i] + "," + dayOfWeek[j] + " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
+                fp.write(region[i] + "," + dayOfWeek[j] + "\t" + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
                 j += 1
             i += 1
 
