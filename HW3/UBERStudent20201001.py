@@ -5,39 +5,19 @@ import calendar
 inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
-data = []
+dic = dict()
 with open(inputFile, "rt") as fp:
-    datas = fp.read()
-    data.append(datas.split("\n"))
-    #print(data)
-    
-    information = []
-    for dat in data:
-        #print(dat)        
-        for d in dat:
-            #print(d)
-            dInfo = d.split(",")
-            information.append(dInfo)
-    #print(information)
-
-    dic = dict()
-    #region = []
-    for info in information:
-        #print(info[0])
-        #if info[0] not in region:
-            #region.append(info[0])
+    for line in fp:
+        line = line.replace("\n", "")
+        info = line.split(",")
+        #print(info)
+        
         if info[0] not in dic:
             dic[info[0]] = {}
-    #print(region)
-    
-    dayOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-    #vehicles = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
-    #trips = [[0 for i in range(len(dayOfWeek))] for i in range(len(region))]
-    #print(vehicles)
-    #print(trips)
-    
-    for info in information:
-        #print(info[1])
+        #print(info[0])
+
+        dayOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+        
         date = info[1].split("/")
         mon = int(date[0])
         day = int(date[1])
@@ -54,8 +34,6 @@ with open(inputFile, "rt") as fp:
             dic[info[0]][info[1]]['vehicles'] += int(info[2])
             dic[info[0]][info[1]]['trips'] += int(info[3])
         #print(mon, day, year, dayNum, dayOfWeek[dayNum])
-        #print(vehicles)
-        idx = 0
 #print(dic)
 
 with open(outputFile, "wt") as fp:
