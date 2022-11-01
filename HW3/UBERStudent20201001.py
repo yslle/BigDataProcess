@@ -17,6 +17,7 @@ def uber(inputFile, outputFile):
     
     information = []
     for dat in data:
+        #print(dat)        
         for d in dat:
             #print(d)
             dInfo = d.split(",")
@@ -44,7 +45,7 @@ def uber(inputFile, outputFile):
         year = int(date[2])
 
         dayNum = calendar.weekday(year, mon, day) 
-        #print(dayNum, dayOfWeek[dayNum])
+        #print(mon, day, year, dayNum, dayOfWeek[dayNum])
         #print(vehicles)
         idx = 0
         for r in region:
@@ -60,9 +61,8 @@ def uber(inputFile, outputFile):
         i = 0
         for r in region:
             j = 0
-            #for d in dayOfWeek:
-            while j != 7:
-                fp.write(region[i] + "," + dayOfWeek[j] + "\t" + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
+            for d in dayOfWeek:
+                fp.write(r + "," + d + " " + str(vehicles[i][j]) + "," +  str(trips[i][j]) + "\n")
                 j += 1
             i += 1
 
